@@ -1,0 +1,14 @@
+table {
+  margin: 20px auto;
+  border: 1px solid #000;
+  border-spacing: 0;
+}
+
+td {
+  padding: 30px;
+  border: 1px solid #000;
+}
+
+.black {
+  background-color: #000;
+}
