@@ -1,0 +1,62 @@
+* {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  width: 25%;
+  margin: 5% auto;
+  padding: 20px;
+  background-color: rgb(192, 192, 189);
+  border-radius: 5px;
+}
+
+.wrapper h1 {
+  font-size: 25px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.wrapper form {
+  padding-top: 20px;
+}
+
+.wrapper form input {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 5px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  border-bottom: 1px solid #fff;
+}
+
+.wrapper form .btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: rgb(20, 235, 213);
+  color: #fff;
+  font-size: 18px;
+  border-radius: 10px;
+}
+
+.wrapper ul {
+  padding: 10px 5px 5px 5px;
+}
+
+.wrapper ul li {
+  padding: 10px 0;
+  font-size: 16px;
+}
+
+.wrapper a {
+  color: #ff0000;
+}
+
+.wrapper .error {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgb(245, 218, 168);
+  text-align: center;
+  border-radius: 5px;
+}
