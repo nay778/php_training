@@ -3,7 +3,8 @@ $(document).ready(function() {
         dateFormat: 'mm/dd/yy',
         changeMonth: true,  
         changeYear:true,
-        yearRange: "1988:2021"
+        yearRange: "1988:2021",
+        maxDate: 0
     });
 });
 
