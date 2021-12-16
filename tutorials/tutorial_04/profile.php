@@ -17,10 +17,10 @@ if (!isset($_SESSION['auth'])) {
 
 <body>
     <div>
-        <h1>Example</h1>
+        <h1><?= $_SESSION['auth']["username"] ?></h1>
         <ul>
             <li>
-                <b>Email:</b> example@gmail.com
+                <b>Email:</b> <?= $_SESSION['email']["useremail"] ?>
             </li>
             <li>
                 <b>Phone:</b> (09) 243 867 645

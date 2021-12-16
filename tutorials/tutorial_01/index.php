@@ -13,9 +13,10 @@
 <body>
     <table>
         <?php
-        for ($row = 1; $row <= 8; $row++) {
+        $n = 8;
+        for ($row = 1; $row <= $n; $row++) {
             echo "<tr>";
-            for ($col = 1; $col <= 8; $col++) {
+            for ($col = 1; $col <= $n; $col++) {
                 if (($row + $col) % 2 == 0) {
                     echo "<td> </td>";
                 } else {

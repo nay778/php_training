@@ -18,7 +18,7 @@
     <div class="container">
         <h1>Age Calculater</h1>
         <form action="" method="post">
-            <input type="text" class="input_box" name="dob" id="datepicker" placeholder="mm/dd/yy">
+            <input type="text" class="input_box" name="dob" id="datepicker" placeholder="8/8/1998">
             <button type="submit" name='submit' class="btn">Calculate</button>
         </form>
 
