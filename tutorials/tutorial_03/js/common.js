@@ -4,6 +4,6 @@ $(document).ready(function() {
         changeMonth: true,  
         changeYear:true,
         yearRange: "1988:2021",
-        maxDate: 0
+        maxDate: 0,
     });
 });

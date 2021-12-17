@@ -15,10 +15,17 @@
 </head>
 
 <body>
+    <?php
+    if (empty($_POST['dob'])) {
+        $dob = "8/8/1988";
+    } else {
+        $dob = $_POST['dob'];
+    }
+    ?>
     <div class="container">
         <h1>Age Calculater</h1>
-        <form action="" method="post">
-            <input type="text" class="input_box" name="dob" id="datepicker" placeholder="8/8/1998">
+        <form action="" method="post" id="form">
+            <input type="text" class="input_box" name="dob" id="datepicker" required value="<?= $dob; ?>">
             <button type="submit" name='submit' class="btn">Calculate</button>
         </form>
 
