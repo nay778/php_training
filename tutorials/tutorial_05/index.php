@@ -1,3 +1,6 @@
+<?php
+require 'vendor/autoload.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,9 +66,9 @@
         <div>
             <h1>4)Excel file contents</h1>
             <?php
-            require 'vendor/autoload.php';
+            //require 'vendor/autoload.php';
 
-            use PhpOffice\PhpSpreadsheet\Spreadsheet;
+            use Spreadsheet;
 
             $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
             $spreadsheet = $reader->load("sample.xlsx");
