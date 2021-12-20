@@ -26,7 +26,7 @@
                 </div>
             <?php endif ?>
             <dvi class="file-upload">
-                <input type="file" name="file">
+                <input type="file" name="file" accept="image/*">
                 <i class="fas fa-cloud-upload-alt"></i>
             </dvi>
             <h2>Drag and drop your file here</h2>

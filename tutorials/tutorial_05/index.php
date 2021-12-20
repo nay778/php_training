@@ -66,11 +66,10 @@ require 'vendor/autoload.php';
         <div>
             <h1>4)Excel file contents</h1>
             <?php
-            //require 'vendor/autoload.php';
 
-            use Spreadsheet;
+            use \PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
-            $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            $reader = new Xlsx();
             $spreadsheet = $reader->load("sample.xlsx");
             $d = $spreadsheet->getSheet(0)->toArray();
             $sheetData = $spreadsheet->getActiveSheet()->toArray();
