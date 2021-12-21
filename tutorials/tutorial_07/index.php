@@ -23,7 +23,12 @@
             <h1>Enter Your Text</h1>
             <form action="qr_code.php" method="post">
                 <input type="text" name="qr-id" class="qr-id" required value="<?= $value; ?>">
-                <button type="submit" class="btn">Save</button>
+                <?php
+                if (isset($_GET['status'])) {
+                    echo "<sapn class='alert'>*your text is too long. please shorten it before generating qr code.</sapn>";
+                }
+                ?>
+                <button type="submit" class="btn">Generate</button>
             </form>
         </div>
         <div class="qr-img">

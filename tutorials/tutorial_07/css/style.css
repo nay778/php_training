@@ -21,10 +21,6 @@
   font-weight: bold;
 }
 
-form {
-  text-align: center;
-}
-
 input[type='text'] {
   width: 100%;
   margin-bottom: 10px;
@@ -37,6 +33,7 @@ input[type='text'] {
 
 .btn {
   width: 70%;
+  margin: 5% 0 0 15%;
   padding: 7px;
   border: 1px solid #fff;
   background-color: #1212f1;
@@ -52,5 +49,9 @@ input[type='text'] {
 }
 
 .p-t {
-  padding-top: 70px;
+  padding-top: 60px;
+}
+
+.alert {
+  color: #ff0000;
 }
