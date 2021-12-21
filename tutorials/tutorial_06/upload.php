@@ -1,16 +1,18 @@
 <?php
-ini_set('upload_max_filesize', '4M');
 $tmp = $_FILES['file']['tmp_name'];
 $name = $_FILES['file']['name'];
 $dir = $_POST['folder'];
-if (!empty($tmp)) {
-    if (empty($dir)) {
+$maxsize    = 2097152;
+if (!empty($name)) {
+    if (($_FILES['file']['size'] >= $maxsize) || ($_FILES["file"]["size"] == 0)) {
+        header('location: index.php?size=choose');
+    } elseif (empty($dir)) {
         $dir = "upload";
         mkdir($dir);
         $folder = $dir . "/" . $name;
         move_uploaded_file($tmp, $folder);
         header('location: index.php?success=save');
-    } else if (is_dir($dir) === false) {
+    } elseif (is_dir($dir) === false) {
         mkdir($dir);
         $folder = $dir . "/" . $name;
         move_uploaded_file($tmp, $folder);

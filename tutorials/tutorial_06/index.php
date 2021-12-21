@@ -20,6 +20,11 @@
                     **Choose your file
                 </div>
             <?php endif ?>
+            <?php if (isset($_GET['size'])) : ?>
+                <div class="alert">
+                    **File too large. File must be less than 2 megabytes
+                </div>
+            <?php endif ?>
             <?php if (isset($_GET['success'])) : ?>
                 <div class="success">
                     **Upload Successful**
