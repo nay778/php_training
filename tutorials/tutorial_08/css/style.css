@@ -97,6 +97,7 @@ button[type=submit]:hover {
 .form-title h2 {
   display: inline-block;
 }
+
 .fa-trash-alt {
   color: #ff0000;
   font-size: 20px;
@@ -113,23 +114,32 @@ button[type=submit]:hover {
 
 .r-color {
   color: #ff0000;
+  text-align: center;
 }
 
 /*logo*/
-.logo{
+.logo,
+.update-logo {
   width: 100%;
   margin-right: 10px;
-  padding-top: 130px;
+  padding-top: 100px;
   background-color: #00ffff;
   border-radius: 10px;
 }
-h3{
+
+.update-logo {
+  padding-top: 50px;
+}
+
+h3 {
   padding-top: 20px;
   color: #0000ff;
-  font-size: 25px;
+  font-size: 20px;
   text-align: center;
 }
-.file-upload {
+
+.file-upload,
+.update-upload {
   display: flex;
   position: relative;
   justify-content: center;
@@ -151,17 +161,27 @@ input[type='file'] {
   position: absolute;
   top: 0;
   left: 0;
-  width: 101px;
+  width: 150px;
   padding: 24px 0;
   cursor: pointer;
   opacity: 0;
 }
 
-.file-upload:hover {
+.update-upload {
+  width: 80%;
+}
+
+.update-upload input[type='file'] {
+  width: 100%;
+  padding: 90px 0;
+}
+
+.file-upload:hover,
+.update-upload:hover {
   background-position: 0 -100%;
   color: #0bf3dc;
 }
-.lit-img{
+
+.lit-img {
   width: 100px;
-  border-radius: 20px;
 }

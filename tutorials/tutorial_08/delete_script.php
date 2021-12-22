@@ -1,7 +1,6 @@
 <?php
 include("db_connection.php");
 if (isset($_GET['delete'])) {
-
     $id = $_GET['delete'];
     delete_data($connection, $id);
 }
@@ -16,7 +15,7 @@ function delete_data($connection, $id)
     if ($exec) {
         header('location:index.php');
     } else {
-        $msg = "Error: " . $query . "<br>" . mysqli_error($connection);
+        $msg = 'Error: ' . $query . '<br>' . mysqli_error($connection);
         echo $msg;
     }
 }

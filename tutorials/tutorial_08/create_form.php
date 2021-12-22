@@ -35,7 +35,8 @@ include('create_script.php');
                     </div>
                 <?php endif ?>
                 <dvi class="file-upload">
-                    <input type="file" name="file" accept="image/*" required>
+                    <img id="imgPreview" src="#" alt="preview" />
+                    <input type="file" name="file" accept="image/*" required id="photo">
                     <i class="fas fa-cloud-upload-alt"></i>
                 </dvi>
                 <h3>Choose Medicine Logo</h3>

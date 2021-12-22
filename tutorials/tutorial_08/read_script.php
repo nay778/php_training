@@ -1,9 +1,6 @@
 <?php
-
 include('db_connection.php');
-
 $fetchData= fetch_data($connection);
-
 // fetch query
 function fetch_data($connection){
   $query="SELECT * from medicine_details WHERE status = 1 ORDER BY id DESC";

@@ -31,21 +31,22 @@ include('update_script.php');
             } ?>
         </p>
         <form method="post" action="" enctype="multipart/form-data">
-            <div class="logo">
+            <div class="update-logo">
                 <?php if (isset($_GET['size'])) : ?>
                     <div class="r-color">
                         **File too large. File must be less than 2 megabytes
                     </div>
                 <?php endif ?>
-                <dvi class="file-upload">
+                <dvi class="update-upload">
                 <?php 
                 if(isset($editData)){
-                    echo "<img src=images/" . $editData['logo'] . " alt=''>";
+                    echo "<img src=images/" . $editData['logo'] . " alt='' id='exitImg'>";
                 }
                 ?>
-                    <input type="file" name="file" accept="image/*" required>
+                <img id="imgPreview" src="#" alt="preview" />
+                <input type="file" name="file" accept="image/*" id="photo">
                 </dvi>
-                <h3>Medicine Logo</h3>
+                <h3><?php echo isset($editData) ? $editData['name'] : '' ?></h3>
             </div>
             <div>
                 <label>Name</label>
