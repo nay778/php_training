@@ -6,19 +6,18 @@ $(document).ready(function () {
         console.log(data);
 
         var name = [];
-        var slae_rate = [];
+        var sale_rate = [];
 
         for (var i in data) {
             name.push(data[i].name);
-            slae_rate.push(data[i].sale_rate);
+           sale_rate.push(data[i].sale_rate);
         }
-
         var chartdata = {
 
         labels: name,
         datasets: [{
+            data: sale_rate,
             label: '# sale rate',
-            data: slae_rate,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -41,14 +40,17 @@ $(document).ready(function () {
 
         var ctx = $("#myChart");
         var barGraph = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: chartdata,
         options: {
             responsive: true,
             plugins: {
+            labels: {
+                render: 'percentage',
+            },
             title: {
                 display: true,
-                text: '-- - --'
+                text: '1988 - 2021'
             },
             },
             interaction: {
@@ -65,10 +67,19 @@ $(document).ready(function () {
                 display: true,
                 title: {
                 display: true,
-                text: 'Value'
+                text: 'sale rate %'
                 },
-                suggestedMin: -10,
-                suggestedMax: 200
+                ticks: {
+                    min: 0,
+                    max: 100,
+                    callback: function(value) {
+                        return value + "%"
+                    }
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: "Percentage"
+                }
             }
             }
         },
