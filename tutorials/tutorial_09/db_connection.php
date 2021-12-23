@@ -17,6 +17,7 @@ $table = "CREATE TABLE IF NOT EXISTS `medicine_details` (
         `company` varchar(255) DEFAULT NULL,
         `producted` varchar(55) DEFAULT NULL,
         `expired` varchar(55) DEFAULT NULL,
+        `sale_rate` varchar(100) DEFAULT NULL,
         `created_at` datetime NOT NULL,
         `updated_at` datetime NOT NULL,
         `status` int(2) NOT NULL
