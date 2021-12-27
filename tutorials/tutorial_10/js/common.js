@@ -32,3 +32,18 @@ $(document).ready(function () {
     }
   });
 });
+
+$(document).ready(function () {
+  $('.s-blk').hide();
+  $('.t-blk').hide();
+  $('.reset').on('click', function () {
+    $('.f-blk').hide();
+    $('.t-blk').hide();
+    $('.s-blk').show();
+  });
+  $('.sign-up').on('click', function () {
+    $('.f-blk').hide();
+    $('.s-blk').hide();
+    $('.t-blk').show();
+  });
+});
