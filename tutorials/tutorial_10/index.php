@@ -38,16 +38,7 @@ include('read_script.php');
                     Login
                 </button>
             </form>
-            <a href="#" class="reset">Reset Password?</a> <a href="#" class="sign-up">Sign up?</a>
-        </div>
-        <div class="s-blk">
-            <h1>Reset Password</h1>
-            <form action="send_mail.php" method="post">
-                <input type="email" name="email" placeholder="Email" required><br>
-                <button type="submit" class="btn">
-                    Send
-                </button>
-            </form>
+            <a href="send_mail_form.php" class="reset">Reset Password?</a> <a href="#" class="sign-up">Sign up?</a>
         </div>
         <div class="t-blk">
             <h1>Register</h1>

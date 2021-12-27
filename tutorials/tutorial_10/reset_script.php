@@ -13,7 +13,7 @@ if (mysqli_num_rows($exec) > 0) {
         $exec = mysqli_query($connection, $query);
         header('location: index.php');
     } else {
-        header('location: reset_form.php?incorrect=1');
+        header("location: reset_form.php?id=$id&incorrect=1");
     }
 } else {
     header('location: index.php?incorrect=1');

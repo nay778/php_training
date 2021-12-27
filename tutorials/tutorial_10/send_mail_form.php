@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,18 +15,17 @@
 <body>
 
     <div class="wrapper">
-        <div class="">
+        <div class="s-blk">
             <h1>Reset Password</h1>
-            <?php if (isset($_GET['incorrect'])) : ?>
+            <?php if (isset($_GET['wrong'])) : ?>
                 <div class="error">
-                    Incorrect Password
+                    Incorrect Email
                 </div>
             <?php endif ?>
-            <form action="reset_script.php?id=<?php echo $_GET['id']; ?>" method="post">
-                <input type="text" name="password" placeholder="Password" required><br>
-                <input type="text" name="confirm" placeholder="Confirm Password" required><br>
+            <form action="send_mail_script.php" method="post">
+                <input type="email" name="email" placeholder="Email" required><br>
                 <button type="submit" class="btn">
-                    Reset Password
+                    Send
                 </button>
             </form>
         </div>
