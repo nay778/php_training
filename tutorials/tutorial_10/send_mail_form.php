@@ -28,6 +28,7 @@
                     Send
                 </button>
             </form>
+            <a href="index.php">Sign in →</a>
         </div>
     </div>
 

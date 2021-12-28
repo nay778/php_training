@@ -4,11 +4,18 @@ require 'vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 
 $recipient = $_POST['email'];
-$query = "SELECT * FROM users WHERE email = '$recipient'";
-$exec = mysqli_query($connection, $query);
+$exec = mysqli_query($connection, "SELECT * FROM users WHERE email = '$recipient'");
 
 if (mysqli_num_rows($exec) > 0) {
     $row = mysqli_fetch_assoc($exec);
+    define('url','http://localhost/php_training/tutorials/tutorial_10/reset_form.php');
+    $token = password_hash($recipient, PASSWORD_BCRYPT).rand(10,9999);
+    $expFormat = mktime(
+    date("H"), date("i"), date("s"), date("m") ,date("d")+1, date("Y")
+    );
+    $expDate = date("Y-m-d H:i:s",$expFormat);
+    $update = mysqli_query($connection,"UPDATE users SET reset_link_token='$token',exp_date='$expDate' WHERE email='$recipient'");
+
     $mail = new PHPMailer();
     $mail->IsSMTP();
 
@@ -24,7 +31,7 @@ if (mysqli_num_rows($exec) > 0) {
     $mail->AddAddress("$recipient", "recipient-name");
     $mail->SetFrom("nnay96804@gmail.com", "Record System");
     $mail->Subject = 'Click the following link your password to be reset';
-    $content = "<b><a href='http://localhost/php_training/tutorials/tutorial_10/reset_form.php?id=$row[id]'>Reset password</a></b>";
+    $content = "<b><a href='". url."?id=".$row['id']."&token=".$token."'>Reset password</a></b>";
 
     $mail->MsgHTML($content);
     if (!$mail->Send()) {

@@ -1,10 +1,5 @@
 <?php
 include('update_script.php');
-session_start();
-if (!isset($_SESSION['auth'])) {
-    header('location: index.php');
-    exit();
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,5 +1,5 @@
 <?php
-include('read_script.php');
+include('db_connection.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
