@@ -1,4 +1,11 @@
+.container{
+  width: 70%;
+  margin:0 auto;
+  font-size: 10px;
+}
+.btn{
+  border: 1px solid;
+}
 .panel-body{
-  width: 50%;
-  margin: 0 auto;
+  margin-top: 10px;
 }
