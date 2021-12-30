@@ -1,40 +1,41 @@
 <?php
-namespace App\Dao;
+namespace App\Dao\Task;
 use App\Models\Task;
-use App\Contracts\Dao\TaskDaoInterface;
+use App\Contracts\Dao\Task\TaskDaoInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class TaskDao implements TaskDaoInterface
 {
+  /**
+   * To get task list
+   * @return array $tasks
+   */
   public function getTaskList()
   {
     $tasks = Task::orderBy('created_at', 'asc')->get();
     return $tasks;
   }
 
+  /**
+   * To save task
+   * @param Request $request request with inputs
+   * @return Object $task
+   */
   public function saveTask(Request $request)
   {
-      $validator = Validator::make($request->all(), [
-        'name' => 'required|max:255',
-    ]);
-
-    if ($validator->fails()) {
-        return redirect('/')
-            ->withInput()
-            ->withErrors($validator);
-    }
-
     $task = new Task;
     $task->name = $request->name;
     $task->save();
 
     return $task;
-    }
-
+  }
+  
+  /**
+   * To delete task by id
+   * @param $id
+   */
   public function deleteTaskById($id)
   {
     Task::findOrFail($id)->delete();
-    //return "delete successful";
   }
 }

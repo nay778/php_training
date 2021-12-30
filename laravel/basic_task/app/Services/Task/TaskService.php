@@ -1,7 +1,7 @@
 <?php
-namespace App\Services;
-use App\Contracts\Dao\TaskDaoInterface;
-use App\Contracts\Services\TaskServiceInterface;
+namespace App\Services\Task;
+use App\Contracts\Dao\Task\TaskDaoInterface;
+use App\Contracts\Services\Task\TaskServiceInterface;
 use Illuminate\Http\Request;
 
 class TaskService implements TaskServiceInterface
@@ -12,17 +12,28 @@ class TaskService implements TaskServiceInterface
   {
     $this->taskDao = $taskDaoInterface;
   }
-
+  /**
+   * To get task list
+   * @return array $tasks
+   */
   public function getTaskList()
   {
     return $this->taskDao->getTaskList();
   }
 
+  /**
+   * To save task
+   * @param Request $request request with inputs
+   * @return Object $task
+   */
   public function saveTask(Request $requset)
   {
     return $this->taskDao->saveTask($requset);
   }
-
+  /**
+   * To delete task by id
+   * @param $id
+   */
   public function deleteTaskById($id)   
   {
     return $this->taskDao->deleteTaskById($id);
