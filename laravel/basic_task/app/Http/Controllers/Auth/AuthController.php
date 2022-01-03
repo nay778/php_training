@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Contracts\Services\Auth\AuthServiceInterface;
 
 class AuthController extends Controller
@@ -36,15 +37,25 @@ class AuthController extends Controller
 
     /**
      * Write code on Method
-     *
+     * @param Request $request
      * @return response()
      */
     public function postLogin(Request $request)
     {
-        $request->validate([
+        //$request->validate([
+        //    'email' => 'required',
+        //    'password' => 'required',
+        //]); 
+        $validator = Validator::make($request->all(), [
             'email' => 'required',
             'password' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return redirect('login')
+                ->withInput()
+                ->withErrors($validator);
+        }
 
         $credentials = $this->authInterface->userLogin($request);
         if (Auth::attempt($credentials)) {
@@ -57,7 +68,7 @@ class AuthController extends Controller
 
     /**
      * Write code on Method
-     *
+     * @param Request $request
      * @return response()
      */
     public function postRegistration(Request $request)
