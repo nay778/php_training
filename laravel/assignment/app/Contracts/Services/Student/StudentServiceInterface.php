@@ -5,11 +5,6 @@ use Illuminate\Http\Request;
 
 interface StudentServiceInterface
 {
-    /**
-     * To show majors in  create from
-     */
-    public function majorList();
-
      /**
      * To show student create from
      * @return View create_from
@@ -40,4 +35,14 @@ interface StudentServiceInterface
      * @param $id
      */
     public function deleteStudentById($id);
+
+    /**
+     * Excel file Import
+     */
+    public function excelImport();
+
+     /**
+     * Excel file Export
+     */
+    public function excelExport();
 }

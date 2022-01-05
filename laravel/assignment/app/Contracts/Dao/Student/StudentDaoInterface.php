@@ -5,11 +5,6 @@ use Illuminate\Http\Request;
 
 interface StudentDaoInterface
 {   
-    /**
-     * To show majors in  create from
-     */
-    public function majorList();
-
      /**
      * To show student create from
      */
@@ -39,4 +34,5 @@ interface StudentDaoInterface
      * @param $id
      */
     public function deleteStudentById($id);
+
 }

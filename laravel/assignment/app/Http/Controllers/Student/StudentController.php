@@ -3,20 +3,26 @@
 namespace App\Http\Controllers\Student;
 
 use Illuminate\Http\Request;
-use App\Models\Student\Major;
-use App\Models\Student\Student;
+use App\Exports\StudentsExport;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
+use App\Contracts\Services\Major\MajorServiceInterface;
 use App\Contracts\Services\Student\StudentServiceInterface;
 
 class StudentController extends Controller
 {   
-    public $studentInterface;
-    public function __construct(StudentServiceInterface $studentServiceInterfae)
+    public $studentInterface, $majorInterface;
+    public function __construct(StudentServiceInterface $studentServiceInterfae,MajorServiceInterface $majorServiceInterfae,)
     {
         $this->studentInterface = $studentServiceInterfae;
+        $this->majorInterface = $majorServiceInterfae;
     }
 
+    /**
+     * To show student list
+     * @return View list
+     */
     public function index()
     {
         $lists =  $this->studentInterface->studentList();
@@ -29,7 +35,7 @@ class StudentController extends Controller
      */
     public function createForm()
     {   
-        $majors = $this->studentInterface->majorList();
+        $majors = $this->majorInterface->majorList();
         return view('student.create_form',compact('majors'));
     }
 
@@ -63,9 +69,10 @@ class StudentController extends Controller
     public function editForm($id)
     {   
         $student = $this->studentInterface->edit($id);
-        $majors = $this->studentInterface->majorList();
+        $majors = $this->majorInterface->majorList();
         return view('student.edit_form')->with(compact('student','majors'));
     }
+    
     /**
      * To update student record by id
      * @param $id
@@ -87,5 +94,22 @@ class StudentController extends Controller
     {
         $this->studentInterface->deleteStudentById($id);
         return redirect()->route('list');
+    }
+
+    /**
+    * Excel file Import
+    */
+    public function import() 
+    { 
+        $file = $this->studentInterface->excelImport();  
+        return redirect()->route('list');
+    }
+
+    /**
+     * Excel file Export
+     */
+    public function export()
+    {
+        return $this->studentInterface->excelExport();
     }
 }

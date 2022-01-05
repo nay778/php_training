@@ -3,6 +3,9 @@
 namespace App\Services\Student;
 
 use Illuminate\Http\Request;
+use App\Imports\StudentImport;
+use App\Exports\StudentsExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Contracts\Dao\Student\StudentDaoInterface;
 use App\Contracts\Services\Student\StudentServiceInterface;
 
@@ -13,14 +16,6 @@ class StudentService implements StudentServiceInterface
     public function __construct(StudentDaoInterface $studentDaoInterface)
     {
         $this->studentDao = $studentDaoInterface;
-    }
-
-    /**
-    * To show majors in  create from
-    */
-    public function majorList()
-    {
-        return $this->studentDao->majorList();
     }
 
     /**
@@ -67,5 +62,21 @@ class StudentService implements StudentServiceInterface
     public function deleteStudentById($id)
     {
         return $this->studentDao->deleteStudentById($id);
+    }
+
+     /**
+     * Excel file Import
+     */
+    public function excelImport()
+    {
+        return Excel::import(new StudentImport,request()->file('file'));
+    }
+
+    /**
+     * Excel file Export
+     */
+    public function excelExport(){
+        
+       return Excel::download(new StudentsExport, 'students.xlsx');
     }
 }
