@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 use App\Contracts\Services\Major\MajorServiceInterface;
 use App\Contracts\Services\Student\StudentServiceInterface;
+use App\Models\Student\Student;
 
 class StudentController extends Controller
 {   
@@ -48,7 +49,7 @@ class StudentController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
-            'email' => 'required',
+            'email' => 'required|email|unique:students,email',
             'address' => 'required|max:255',
         ]);
 
@@ -109,7 +110,8 @@ class StudentController extends Controller
      * Excel file Export
      */
     public function export()
-    {
+    {   
+        
         return $this->studentInterface->excelExport();
     }
 }

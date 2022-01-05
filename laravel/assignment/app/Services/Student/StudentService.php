@@ -71,12 +71,20 @@ class StudentService implements StudentServiceInterface
     {
         return Excel::import(new StudentImport,request()->file('file'));
     }
+    /**
+     * To get student list for excel export
+     * @return array 
+     */
+    public function studentListExport()
+    {
+        return $this->studentDao->studentListExport();
+    }
 
     /**
      * Excel file Export
      */
     public function excelExport(){
         
-       return Excel::download(new StudentsExport, 'students.xlsx');
+       return Excel::download(new StudentsExport($this->studentDao), 'students.xlsx');
     }
 }

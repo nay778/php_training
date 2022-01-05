@@ -12,6 +12,7 @@
       </form>
       <a href="{{ route('create') }}" class="m-r" title="add"><i class="far fa-plus-square"></i></a>
       <a href="{{ route('export') }}" class="m-r b-color" title="download excel file"><i class="fas fa-cloud-download-alt"></i></a>
+      <a href="{{ asset('sample/sample.xlsx') }}" download class="sample" title="download sample excel file">sample excel file</a>
     </h2>
   </div>
   <table border="1">

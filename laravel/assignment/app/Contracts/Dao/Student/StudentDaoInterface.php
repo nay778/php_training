@@ -34,5 +34,10 @@ interface StudentDaoInterface
      * @param $id
      */
     public function deleteStudentById($id);
+    
+    /**
+     * To get student list for excel export
+     */
+    public function studentListExport();
 
 }

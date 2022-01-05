@@ -17,6 +17,7 @@ body {
   justify-content: space-between;
   padding: 20px 10px;
   padding-bottom: 15px;
+  background-color: #aeaeb5;
 }
 
 h2 {
@@ -194,19 +195,31 @@ h3 {
   color: #0000ff;
 }
 .import{
-  background-color: skyblue;
+  background-color: #cb998f;
   display: inline-block;
-  width: 200px;
+  width: 210px;
+  margin-right: 3px;
+  border-radius: 10px;
 }
 .import input{
   border: 1px solid red;
   display: inline;
   width: 140px;
   padding: 0;
+  margin-top: 14px;
 }
 .import .btn-import{
   margin: 0;
   display: inline;
-  width: 50px;
-  padding: 10px 0;
+  width: 19px;
+  border-radius: 10px;
+  background-color: transparent;
+  color: #00ff;
+  font-size: 28px;
+}
+.import .btn-import:hover{
+  background-color: transparent;
+}
+.sample{
+  font-size: 20px;
 }

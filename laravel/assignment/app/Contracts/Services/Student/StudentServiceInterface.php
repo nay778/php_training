@@ -45,4 +45,10 @@ interface StudentServiceInterface
      * Excel file Export
      */
     public function excelExport();
+
+    /**
+     *To get student list for excel export
+     */
+    public function studentListExport();
+
 }

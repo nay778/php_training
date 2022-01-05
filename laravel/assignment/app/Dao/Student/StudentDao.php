@@ -1,21 +1,12 @@
 <?php
 namespace App\Dao\Student;
 use Illuminate\Http\Request;
-use App\Models\Student\Major;
 use App\Models\Student\Student;
 use App\Contracts\Dao\Student\StudentDaoInterface;
 
 class StudentDao implements StudentDaoInterface
-{
-    /**
-     * To show majors in  create from
-     */
-    public function majorList()
-    {
-        $majors = Major::pluck('name', 'id');
-        return $majors;
-    }
-
+{   
+    public $id = 2;
     /**
      * To show student create from
      */
@@ -69,7 +60,18 @@ class StudentDao implements StudentDaoInterface
      * To delete student by id
      * @param $id
      */
-    public function deleteStudentById($id){
+    public function deleteStudentById($id)
+    {
         Student::findOrFail($id)->delete();
+    }
+
+    /**
+     * To get student list for excel export
+     */
+    public function studentListExport()
+    {
+
+        $lists = Student::with('major')->get();
+        return $lists;
     }
 }
