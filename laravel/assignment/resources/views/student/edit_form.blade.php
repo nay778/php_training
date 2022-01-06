@@ -3,7 +3,6 @@
 <div class="form-detail">
   <div class="list-title">
     <h2>Edit Record</h2>
-    <h2><a href="{{ route('list') }}"><i class="far fa-list-alt"></i></a></h2>
   </div>
   <form method="post" action="{{ route('update.student',$student->id) }}">
     @csrf

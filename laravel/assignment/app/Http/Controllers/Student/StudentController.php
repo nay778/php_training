@@ -96,7 +96,13 @@ class StudentController extends Controller
         $this->studentInterface->deleteStudentById($id);
         return redirect()->route('list');
     }
-
+    /**
+    * Excel file Import
+    */
+    public function importExportView() 
+    {
+        return view('student.import');
+     }
     /**
     * Excel file Import
     */

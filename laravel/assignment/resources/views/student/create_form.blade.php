@@ -3,9 +3,6 @@
 <div class="form-detail">
   <div class="list-title">
     <h2>Add Record</h2>
-    <h2>
-      <a href="{{ route('list') }}"><i class="far fa-list-alt"></i></a>
-    </h2>
   </div>
   @include('/common.errors')
   <form method="post" action="{{ route('create.student') }}">

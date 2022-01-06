@@ -21,7 +21,7 @@ Route::get('edit-form/{id}',[StudentController::class,'editForm'])->name('edit')
 Route::put('/student-update/{id}',[StudentController::class,'update'])->name('update.student');
 Route::get('delete/{id}',[StudentController::class,'delete'])->name('delete');
 
-//Route::get('importExportView', [StudentController::class, 'importExportView']);
+Route::get('importExportView', [StudentController::class, 'importExportView'])->name('import-view');
 Route::get('export', [StudentController::class, 'export'])->name('export');
 Route::post('import', [StudentController::class, 'import'])->name('import');
 
