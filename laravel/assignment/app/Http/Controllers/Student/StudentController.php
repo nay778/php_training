@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Student;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Exports\StudentsExport;
+use App\Models\Student\Student;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 use App\Contracts\Services\Major\MajorServiceInterface;
 use App\Contracts\Services\Student\StudentServiceInterface;
-use App\Models\Student\Student;
 
 class StudentController extends Controller
 {   
@@ -100,8 +100,11 @@ class StudentController extends Controller
     /**
     * Excel file Import
     */
-    public function import() 
+    public function import(Request $request) 
     { 
+        $request->validate([
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
         $file = $this->studentInterface->excelImport();  
         return redirect()->route('list');
     }
@@ -114,4 +117,33 @@ class StudentController extends Controller
         
         return $this->studentInterface->excelExport();
     }
+
+
+    /**
+     * search
+     * return view 
+     */
+    public function searchView()
+    {   
+        $lists = [];
+        return view('student.search', compact('lists'));
+    }
+
+
+    /**
+     *to find student list
+    * @param $request
+    */
+    public function search(Request $request)
+    {       
+        if($request->name == '' && $request->start == '' && $request->end == ''){
+            $lists = [];
+        }else{
+            $lists = $this->studentInterface->search($request);
+        }
+       
+        return view('student.search', compact('lists'));      
+    }
+
+
 }

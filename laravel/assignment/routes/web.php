@@ -24,3 +24,7 @@ Route::get('delete/{id}',[StudentController::class,'delete'])->name('delete');
 //Route::get('importExportView', [StudentController::class, 'importExportView']);
 Route::get('export', [StudentController::class, 'export'])->name('export');
 Route::post('import', [StudentController::class, 'import'])->name('import');
+
+//search
+Route::get('search-view', [StudentController::class, 'searchView'])->name('search-view');
+Route::post('search', [StudentController::class, 'search'])->name('search');

@@ -14,6 +14,7 @@ class Student extends Model
         'email', 
         'address', 
         'major_id', 
+        'created_at', 
     ];
     public function major()
     {

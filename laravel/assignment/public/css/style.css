@@ -223,3 +223,14 @@ h3 {
 .sample{
   font-size: 20px;
 }
+.search-form{
+  width: 90%;
+  margin: 4% auto;
+  padding: 0 9px;
+}
+.search-form .btn{
+  margin: 0;
+  background-color: #00ff;
+  margin-top: 37px;
+  padding: 6px 25px;
+}

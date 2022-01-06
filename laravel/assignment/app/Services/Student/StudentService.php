@@ -87,4 +87,12 @@ class StudentService implements StudentServiceInterface
         
        return Excel::download(new StudentsExport($this->studentDao), 'students.xlsx');
     }
+
+    /**
+     *to find student list
+     * @param $request
+     */
+    public function search($request){
+        return $this->studentDao->search($request);
+    }
 }

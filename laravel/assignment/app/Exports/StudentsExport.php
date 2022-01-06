@@ -33,7 +33,6 @@ class StudentsExport implements FromCollection,  WithHeadings, WithEvents, WithM
     public function headings() :array
     {
         return [
-            'Id',
             'Name',
             'Email',
             'Address',
@@ -45,7 +44,6 @@ class StudentsExport implements FromCollection,  WithHeadings, WithEvents, WithM
   
     public function map($student) : array {
         return [
-            $student->id,
             $student->name,
             $student->email,
             $student->address,

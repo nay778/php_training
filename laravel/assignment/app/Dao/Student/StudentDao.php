@@ -1,7 +1,9 @@
 <?php
 namespace App\Dao\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Models\Student\Student;
+use Illuminate\Support\Facades\DB;
 use App\Contracts\Dao\Student\StudentDaoInterface;
 
 class StudentDao implements StudentDaoInterface
@@ -70,8 +72,55 @@ class StudentDao implements StudentDaoInterface
      */
     public function studentListExport()
     {
-
         $lists = Student::with('major')->get();
         return $lists;
+    }
+
+    /**
+     *to find student list
+     * @param $request
+     */
+    public function search($request){
+        $query = "SELECT students.*,majors.name as major_name FROM students JOIN majors 
+                  WHERE students.major_id = majors.id and ";
+        $name = $request->name;
+        $startDate = $request->start;
+        $endDate = $request->end;
+//name only
+        if($name && $startDate == '' && $endDate == ''){
+            $query .= "students.name like '%$name%'";
+        }
+//name and s
+        if($name != '' && $startDate != ''){
+            $query .= "students.name like '%$request->name%' and students.created_at >= '$startDate'";   
+        }
+//name and e
+        if($name && $endDate){
+            $query .= "students.name like '%$request->name%' and students.created_at <= '$endDate'";   
+        }
+//start only
+        if($startDate && $name == '' && $endDate == ''){
+            $query .= "students.created_at >= '$startDate'";   
+        }
+//end only
+        if($endDate && $name == '' && $startDate == ''){
+            $query .= "students.created_at <= '$endDate'";   
+        }
+
+//satrt and end
+        if($name == '' && $startDate && $endDate){
+            $query .= "students.created_at >= '$startDate' and students.created_at <= '$endDate'";   
+        }
+
+//all
+        if($name && $startDate && $endDate){
+            $query = "SELECT students.*,majors.name as major_name FROM students JOIN majors 
+            WHERE students.major_id = majors.id and students.name like '%$request->name%' 
+            and students.created_at >= '$startDate' and students.created_at <= '$endDate'";   
+        }
+
+         return DB::select(
+            DB::raw($query)
+        );
     }
 }

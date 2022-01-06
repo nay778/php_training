@@ -4,7 +4,8 @@
 <div class="table-data">
   <div class="list-title">
     <h2>Student lists</h2>
-    <h2>
+    <h2> 
+      <a href="{{ route('search-view') }}" class="m-r" title="search"><i class="fas fa-search"></i></i></a>
       <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data" class="import">
         @csrf
         <input type="file" name="file"  accept=".xls,.xlsx" required>

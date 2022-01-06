@@ -19,7 +19,8 @@ class StudentImport implements ToModel,WithHeadingRow
             'name'     => $row['name'],
             'email'    => $row['email'],
             'address'    => $row['address'], 
-            'major_id'    => $row['major_id'],  
+            'major_id'    => $row['major_id'], 
+            'created_at'    => $row['created_at'],   
             //
         ]);
     }

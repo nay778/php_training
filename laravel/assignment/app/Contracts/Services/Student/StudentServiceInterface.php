@@ -51,4 +51,9 @@ interface StudentServiceInterface
      */
     public function studentListExport();
 
+    /**
+     *to find student list
+     * @param $request
+     */
+    public function search($request);
 }
