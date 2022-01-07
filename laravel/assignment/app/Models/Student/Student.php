@@ -12,9 +12,9 @@ class Student extends Model
     protected $fillable = [
         'name',
         'email', 
+        'dob',
         'address', 
         'major_id', 
-        'created_at', 
     ];
     public function major()
     {

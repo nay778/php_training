@@ -18,10 +18,19 @@ class StudentImport implements ToModel,WithHeadingRow
         return new Student([
             'name'     => $row['name'],
             'email'    => $row['email'],
-            'address'    => $row['address'], 
-            'major_id'    => $row['major_id'], 
-            'created_at'    => $row['created_at'],   
+            'dob'      =>$this->transformDate($row['dob']),
+            'address'  => $row['address'], 
+            'major_id' => $row['major_id'],  
             //
         ]);
+    }
+
+    public function transformDate($value, $format = 'Y/m/d')
+    {
+        try {
+            return \Carbon\Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($value));
+        } catch (\ErrorException $e) {
+            return \Carbon\Carbon::createFromFormat($format, $value)->format('y/m/d');
+        }
     }
 }

@@ -35,8 +35,9 @@ class StudentsExport implements FromCollection,  WithHeadings, WithEvents, WithM
         return [
             'Name',
             'Email',
-            'Address',
             'Major',
+            'DOB',
+            'Address',
             'Created_at',
             'Updated_at',
         ];
@@ -46,8 +47,9 @@ class StudentsExport implements FromCollection,  WithHeadings, WithEvents, WithM
         return [
             $student->name,
             $student->email,
-            $student->address,
             $student->major->name,
+            $student->dob,
+            $student->address,
             $student->created_at,
             $student->updated_at,
         ] ;

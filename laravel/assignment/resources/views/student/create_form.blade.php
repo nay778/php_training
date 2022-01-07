@@ -20,6 +20,8 @@
         </option>
         @endforeach
       </select>
+      <label>Date Of Birth</label>
+      <input type="text" placeholder="Enter Date Of Birth(Y/m/d)" name="dob" id="datepicker">
       <label>Address</label>
       <input type="text" placeholder="Enter Address" name="address">
       <button type="submit" name="create">Save</button>

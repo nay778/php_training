@@ -8,7 +8,7 @@
       <div class="col-9 mx-auto">
         <div class="alert alert-info">
           <i class="fas fa-download mr-2"></i>
-          Sample excel file. <a href="{{ asset('sample/sample.xlsx') }}">Download Now!</a>
+          Sample excel file. <a href="{{ asset('sample/sample_student.xlsx') }}">Download Now!</a>
         </div>
       </div>
     </div>

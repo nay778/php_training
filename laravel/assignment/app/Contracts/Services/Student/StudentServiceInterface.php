@@ -7,7 +7,7 @@ interface StudentServiceInterface
 {
      /**
      * To show student create from
-     * @return View create_from
+     * @return object View create_from
      */
     public function studentList();
 

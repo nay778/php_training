@@ -111,7 +111,7 @@ class StudentController extends Controller
         $request->validate([
             'file' => 'required|mimes:xls,xlsx'
         ]);
-        $file = $this->studentInterface->excelImport();  
+        $file = $this->studentInterface->excelImport();
         return redirect()->route('list');
     }
 
@@ -127,7 +127,7 @@ class StudentController extends Controller
 
     /**
      * search
-     * return view 
+     * @return view 
      */
     public function searchView()
     {   
@@ -139,15 +139,16 @@ class StudentController extends Controller
     /**
      *to find student list
     * @param $request
+     *@return view 
     */
     public function search(Request $request)
     {       
+       
         if($request->name == '' && $request->start == '' && $request->end == ''){
             $lists = [];
         }else{
             $lists = $this->studentInterface->search($request);
         }
-       
         return view('student.search', compact('lists'));      
     }
 

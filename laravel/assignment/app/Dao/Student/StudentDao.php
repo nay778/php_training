@@ -1,32 +1,34 @@
 <?php
 namespace App\Dao\Student;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use App\Models\Student\Student;
 use Illuminate\Support\Facades\DB;
 use App\Contracts\Dao\Student\StudentDaoInterface;
 
 class StudentDao implements StudentDaoInterface
 {   
-    public $id = 2;
+    
     /**
      * To show student create from
+     * @return object
      */
     public function studentList()
     {
-        $lists = Student::all();
+        $lists = Student::orderBy('created_at', 'desc')->get();
         return $lists;
     }
 
     /**
      * To add student record
-     * @param $request
+     * @param $request 
+     * @return Object $data
      */
     public function saveStudent(Request $request)
     {
         $data = new Student;
         $data->name = $request->name;
         $data->email = $request->email;
+        $data->dob = $request->dob;
         $data->address = $request->address;
         $data->major_id = $request->major_id;
         $data->save();
@@ -79,48 +81,28 @@ class StudentDao implements StudentDaoInterface
     /**
      *to find student list
      * @param $request
+     * @return Array
      */
     public function search($request){
-        $query = "SELECT students.*,majors.name as major_name FROM students JOIN majors 
-                  WHERE students.major_id = majors.id and ";
+        $students = DB::table('students')
+        ->join('majors', 'students.major_id', 'majors.id')
+        ->select('students.*', 'majors.name as major_name');
+
         $name = $request->name;
         $startDate = $request->start;
         $endDate = $request->end;
-//name only
-        if($name && $startDate == '' && $endDate == ''){
-            $query .= "students.name like '%$name%'";
+        
+        if($name){
+            $students->where('students.name', 'like', '%'. $name .'%');
         }
-//name and s
-        if($name != '' && $startDate != ''){
-            $query .= "students.name like '%$request->name%' and students.created_at >= '$startDate'";   
+        if($startDate){
+            $students->whereDate('students.created_at', '>=', $startDate);
         }
-//name and e
-        if($name && $endDate){
-            $query .= "students.name like '%$request->name%' and students.created_at <= '$endDate'";   
-        }
-//start only
-        if($startDate && $name == '' && $endDate == ''){
-            $query .= "students.created_at >= '$startDate'";   
-        }
-//end only
-        if($endDate && $name == '' && $startDate == ''){
-            $query .= "students.created_at <= '$endDate'";   
+        if($endDate){
+            $students->whereDate('students.created_at', '<=', $endDate);
         }
 
-//satrt and end
-        if($name == '' && $startDate && $endDate){
-            $query .= "students.created_at >= '$startDate' and students.created_at <= '$endDate'";   
-        }
+        return $students->get();
 
-//all
-        if($name && $startDate && $endDate){
-            $query = "SELECT students.*,majors.name as major_name FROM students JOIN majors 
-            WHERE students.major_id = majors.id and students.name like '%$request->name%' 
-            and students.created_at >= '$startDate' and students.created_at <= '$endDate'";   
-        }
-
-         return DB::select(
-            DB::raw($query)
-        );
     }
 }

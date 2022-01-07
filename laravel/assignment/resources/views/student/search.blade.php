@@ -31,6 +31,7 @@
       <th>Name</th>
       <th>Email</th>
       <th>Major</th>
+      <th>DOB</th>
       <th>Address</th>
       <th>Edit</th>
       <th>Delete</th>
@@ -41,6 +42,7 @@
       <td>{{ $list->name }}</td>
       <td>{{ $list->email }}</td>
       <td>{{ $list->major_name }}</td>
+      <td>{{ $list->dob }}</td>
       <td>{{ $list->address }}</td>
       <td class="text-center"><a href="{{ route('edit',$list->id) }}"><i class="far fa-edit"></i></a></td>
       <td class="text-center"><a href="{{ route('delete',$list->id) }}"><i class="fas fa-trash-alt"></i></a></td>
