@@ -14,7 +14,11 @@ class StudentDao implements StudentDaoInterface
      */
     public function studentList()
     {
-        $lists = Student::orderBy('created_at', 'desc')->get();
+        //$lists = Student::orderBy('created_at', 'desc')->get();
+        $lists = DB::table('students')
+        ->join('majors', 'students.major_id', 'majors.id')
+        ->select('students.*', 'majors.name as major_name')
+        ->orderBy('students.created_at', 'desc')->get();
         return $lists;
     }
 
@@ -32,7 +36,7 @@ class StudentDao implements StudentDaoInterface
         $data->address = $request->address;
         $data->major_id = $request->major_id;
         $data->save();
-        return $data;
+        return 'Add Successfully!';
     }
 
     /**
@@ -58,6 +62,7 @@ class StudentDao implements StudentDaoInterface
         $student->major_id = $request->input('major_id');
         $student->address = $request->input('address');
         $student->update();
+        return 'Add Successfully!';
     }
 
     /**
@@ -67,6 +72,7 @@ class StudentDao implements StudentDaoInterface
     public function deleteStudentById($id)
     {
         Student::findOrFail($id)->delete();
+        return 'Deleted Successfully!';
     }
 
     /**

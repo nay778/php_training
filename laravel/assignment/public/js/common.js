@@ -33,11 +33,3 @@ $(document).ready(function () {
     }
   });
 });
-
-$(document).ready(function () {
-  $('.t-blk').hide();
-  $('.sign-up').on('click', function () {
-    $('.f-blk').hide();
-    $('.t-blk').show();
-  });
-});
