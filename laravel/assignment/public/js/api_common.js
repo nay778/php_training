@@ -157,7 +157,6 @@ function deleteStudentById(id) {
     url: "/api/student/delete/" + id,
     type: "DELETE",
     success: function (result) {
-      alert(typeof (result));
       console.log(result);
       location.reload();
     }
