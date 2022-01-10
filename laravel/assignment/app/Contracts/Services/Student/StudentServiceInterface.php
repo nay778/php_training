@@ -56,4 +56,11 @@ interface StudentServiceInterface
      * @param $request
      */
     public function search($request);
+
+    /**
+     * To send student list
+     * @return object
+     */
+    public function lastStudentList();
+    
 }

@@ -95,4 +95,14 @@ class StudentService implements StudentServiceInterface
     public function search($request){
         return $this->studentDao->search($request);
     }
+    /**
+     * To send student list
+     * @return object
+     */
+    public function lastStudentList()
+    {
+        return $this->studentDao->lastStudentList();
+    }
+
+
 }

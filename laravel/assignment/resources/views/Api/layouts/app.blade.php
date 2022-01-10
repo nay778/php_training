@@ -61,6 +61,10 @@ bootstrap.min.css">
             <i class="fas fa-search text-primary pr-1"></i>
             <span class="d-none d-lg-inline">Serach</span>
           </a>
+          <a href="{{ route('mail-view') }}" class="list-group-item list-group-item-action">
+            <i class="fas fa-mail text-primary pr-1"></i>
+            <span class="d-none d-lg-inline">Send Mail</span>
+          </a>
           <button class="list-group-item list-group-item-action create">
           <i class="fas fa-user-plus text-info pr-1"></i>
             <span class="d-none d-lg-inline">New Student</span>

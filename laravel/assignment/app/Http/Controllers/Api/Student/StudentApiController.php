@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api\Student;
 
+use App\Mail\StudentMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use App\Contracts\Services\Major\MajorServiceInterface;
 use App\Contracts\Services\Student\StudentServiceInterface;
@@ -24,8 +26,7 @@ class StudentApiController extends Controller
     public function index()
     {
         $lists =  $this->studentInterface->studentList();
-        return response()->json($lists);
-        
+        return response()->json($lists); 
     }
 
     /**
@@ -57,6 +58,9 @@ class StudentApiController extends Controller
                 ->withErrors($validator);
         }
         $msg = $this->studentInterface->saveStudent($request);
+        if($msg){
+            Mail::to($request->email)->send(new StudentMail());
+        }
         return response(['message' => $msg]);
     }
 
@@ -117,7 +121,6 @@ class StudentApiController extends Controller
      */
     public function export()
     {   
-        
         return $this->studentInterface->excelExport();
     }
 
@@ -148,6 +151,21 @@ class StudentApiController extends Controller
         }
         return view('Api.student.search', compact('lists'));     
     }
-
-
+    
+    /**
+     *to send student list
+    * @param $request
+    */
+    public function mail(Request $request)
+    {  
+        $email = $request->email;
+        $object =  $this->studentInterface->lastStudentList();
+        $lists = $object->toArray();
+        Mail::send('Api.emails.sendListMail', compact('lists'), function($message) use ($email) {
+            $message->to($email, 'Student Reocrd')->subject
+               ('Student List');
+            });
+        $data = 'success';
+        return view('Api.student.mail',compact('data'));
+    }
 }

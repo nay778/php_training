@@ -111,4 +111,18 @@ class StudentDao implements StudentDaoInterface
         return $students->get();
 
     }
+
+    /**
+     * To send student list
+     * @return object
+     */
+    public function lastStudentList()
+    {
+        $lists = DB::table('students')
+        ->join('majors', 'students.major_id', 'majors.id')
+        ->select('students.*', 'majors.name as major_name')
+        ->orderBy('students.created_at', 'desc')
+        ->latest()->take(10)->get();
+        return $lists;
+    }
 }

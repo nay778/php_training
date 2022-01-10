@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Student\StudentController;
 use App\Http\Controllers\Api\Student\StudentApiController;
@@ -44,3 +45,7 @@ Route::post('/student/import', [StudentApiController::class, 'import'])->name('i
 Route::get('/student/search-view', [StudentApiController::class, 'searchView'])->name('search-view');
 Route::post('/student/search', [StudentApiController::class, 'search'])->name('search');
 
+Route::get('/student/mail-view',function(){
+  return view('Api.student.mail');
+})->name('mail-view');
+Route::post('/student/mail', [StudentApiController::class, 'mail'])->name('mail');
