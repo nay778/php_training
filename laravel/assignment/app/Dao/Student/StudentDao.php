@@ -25,7 +25,7 @@ class StudentDao implements StudentDaoInterface
     /**
      * To add student record
      * @param $request 
-     * @return Object $data
+     * @return Object
      */
     public function saveStudent(Request $request)
     {

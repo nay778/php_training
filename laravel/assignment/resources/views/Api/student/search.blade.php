@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('Api.layouts.app')
 @section('content')
 
 <div class="table-data">
@@ -44,8 +44,9 @@
       <td>{{ $list->major_name }}</td>
       <td>{{ $list->dob }}</td>
       <td>{{ $list->address }}</td>
-      <td class="text-center"><a href="{{ route('edit',$list->id) }}"><i class="far fa-edit"></i></a></td>
-      <td class="text-center"><a href="{{ route('delete',$list->id) }}"><i class="fas fa-trash-alt"></i></a></td>
+      <td class="text-center"><button class="edit" onClick='editStudentById({{$list->id}})'><i class="far fa-edit text-priamry"></i></button></td>
+      <td class="text-center"><button class="delete" onClick="deleteStudentById('{{$list->id}}')"><i class="fas fa-trash-alt text-danger"></i></button></td>
+              
     </tr>
     @endforeach
   </table>

@@ -19,7 +19,7 @@ class StudentApiController extends Controller
 
     /**
      * To show student list
-     * @return View list
+     * @return object
      */
     public function index()
     {
@@ -30,7 +30,7 @@ class StudentApiController extends Controller
 
     /**
      * To show student create from
-     * @return View create_from
+     * @return object 
      */
     public function createForm()
     {   
@@ -41,7 +41,7 @@ class StudentApiController extends Controller
     /**
      * To add student record
      * @param $request
-     * @return View list
+     * @return object
      */
     public function store(Request $request)
     {
@@ -63,7 +63,7 @@ class StudentApiController extends Controller
     /**
      * To show student record by id
      * @param $id
-     * @return View edit_form
+     * @return object
      */
     public function editForm($id)
     {   
@@ -80,7 +80,7 @@ class StudentApiController extends Controller
      * To update student record by id
      * @param $id
      * @param $request
-     * @return View list
+     * @return object
      */
     public function update(Request $request,$id)
     {
@@ -91,22 +91,17 @@ class StudentApiController extends Controller
     /**
      * To delete student by id
      * @param $id
-     * @return View list
+     * @return object
      */
     public function delete($id)
-    {
+    {   
         $msg = $this->studentInterface->deleteStudentById($id);
-        return response(['message' => $msg]);;
+        return response(['message' => $msg]);
     }
+   
     /**
     * Excel file Import
-    */
-    public function importExportView() 
-    {
-        return view('student.import');
-     }
-    /**
-    * Excel file Import
+    *@return View
     */
     public function import(Request $request) 
     { 
@@ -134,7 +129,7 @@ class StudentApiController extends Controller
     public function searchView()
     {   
         $lists = [];
-        return view('student.search', compact('lists'));
+        return view('Api.student.search', compact('lists'));
     }
 
 
@@ -151,7 +146,7 @@ class StudentApiController extends Controller
         }else{
             $lists = $this->studentInterface->search($request);
         }
-        return response()->json($lists);      
+        return view('Api.student.search', compact('lists'));     
     }
 
 

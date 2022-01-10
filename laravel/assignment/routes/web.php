@@ -22,18 +22,25 @@ use App\Http\Controllers\Api\Student\StudentApiController;
 //Route::put('/student-update/{id}',[StudentController::class,'update'])->name('update.student');
 //Route::get('delete/{id}',[StudentController::class,'delete'])->name('delete');
 
-Route::get('importExportView', [StudentController::class, 'importExportView'])->name('import-view');
+//Route::get('importExportView', [StudentController::class, 'importExportView'])->name('import-view');
 Route::get('export', [StudentController::class, 'export'])->name('export');
-Route::post('import', [StudentController::class, 'import'])->name('import');
+//Route::post('import', [StudentController::class, 'import'])->name('import');
 
 //search
-Route::get('search-view', [StudentController::class, 'searchView'])->name('search-view');
-Route::post('search', [StudentController::class, 'search'])->name('search');
+//Route::get('search-view', [StudentController::class, 'searchView'])->name('search-view');
+//Route::post('search', [StudentController::class, 'search'])->name('search');
 
 
 //Api
 Route::get('/student/list',function(){
   return view('Api.student.list');
-});
+})->name('list');
 
+Route::get('/student/importExportView',function(){
+  return view('Api.student.import');
+})->name('import-view');
+Route::post('/student/import', [StudentApiController::class, 'import'])->name('import');
+
+Route::get('/student/search-view', [StudentApiController::class, 'searchView'])->name('search-view');
+Route::post('/student/search', [StudentApiController::class, 'search'])->name('search');
 

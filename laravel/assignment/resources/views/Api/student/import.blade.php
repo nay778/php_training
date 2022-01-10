@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('Api.layouts.app')
 @section('content')
 
 <div class="table-data">

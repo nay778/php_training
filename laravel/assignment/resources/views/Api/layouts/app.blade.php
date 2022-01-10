@@ -10,8 +10,7 @@ bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
   <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <!--<script src="{{ asset('js/library/jquery-3.5.1.min.js') }}"></script>-->
+  <script src="{{ asset('js/library/jquery-3.6.0.min.js') }}"></script>
   <script src="{{ asset('js/library/jquery-ui.js') }}"></script>
   <script src="{{ asset('js/common.js') }}"></script>
   <style>
@@ -35,7 +34,7 @@ bootstrap.min.css">
           <span class="list-group-item disabled d-none d-lg-block">
             <small>CONTROLS</small>
           </span>
-          <a href="" class="list-group-item list-group-item-action active">
+          <a href="{{ route('list') }}" class="list-group-item list-group-item-action active">
             <i class="fas fa-home"></i>
             <span class="d-none d-lg-inline">Dashboard</span>
           </a>
