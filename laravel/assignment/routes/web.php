@@ -37,9 +37,17 @@ Route::get('/student/list',function(){
   return view('Api.student.list');
 })->name('list');
 
+
+Route::get('/student/createView',function(){
+  return view('Api.student.create_form');
+})->name('create-view');
+
+Route::post('/student/save',[StudentApiController::class,'store']);
+
 Route::get('/student/importExportView',function(){
   return view('Api.student.import');
 })->name('import-view');
+
 Route::post('/student/import', [StudentApiController::class, 'import'])->name('import');
 
 Route::get('/student/search-view', [StudentApiController::class, 'searchView'])->name('search-view');

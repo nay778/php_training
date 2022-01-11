@@ -5,9 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Dashboard</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/
-bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+  <link href="{{ asset('css/library/bootstrap.all.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/library/fontawesome.all.min.css') }}" rel="stylesheet">
   <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <script src="{{ asset('js/library/jquery-3.6.0.min.js') }}"></script>
@@ -65,10 +64,10 @@ bootstrap.min.css">
             <i class="fas fa-paper-plane text-primary pr-1"></i>
             <span class="d-none d-lg-inline">Send Mail</span>
           </a>
-          <button class="list-group-item list-group-item-action create">
-          <i class="fas fa-user-plus text-info pr-1"></i>
+          <a href="{{ route('create-view') }}" class="list-group-item list-group-item-action">
+            <i class="fas fa-user-plus text-info pr-1"></i>
             <span class="d-none d-lg-inline">New Student</span>
-          </button>
+          </a>
           <a href="{{ route('import-view') }}" class="list-group-item list-group-item-action">
             <i class="fas fa-cloud-upload-alt text-primary pr-1"></i>
             <span class="d-none d-lg-inline">Upload Excel File</span>
@@ -106,7 +105,7 @@ bootstrap.min.css">
     </div>
   </div>
   <script src="{{ asset('js/api_common.js') }}"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="{{ asset('js/library/bootstrap.min.js') }}"></script>
 </body>
 
 </html>

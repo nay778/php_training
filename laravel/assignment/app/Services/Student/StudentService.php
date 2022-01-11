@@ -2,9 +2,11 @@
 
 namespace App\Services\Student;
 
+use App\Mail\StudentMail;
 use Illuminate\Http\Request;
 use App\Imports\StudentImport;
 use App\Exports\StudentsExport;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Contracts\Dao\Student\StudentDaoInterface;
 use App\Contracts\Services\Student\StudentServiceInterface;
@@ -33,7 +35,12 @@ class StudentService implements StudentServiceInterface
      */
     public function saveStudent(Request $request)
     {
-        return $this->studentDao->saveStudent($request);
+        $msg =  $this->studentDao->saveStudent($request);
+
+        if($msg){
+            Mail::to($request->email)->send(new StudentMail());
+            return $msg;
+        }
     }
 
     /**
@@ -95,13 +102,22 @@ class StudentService implements StudentServiceInterface
     public function search($request){
         return $this->studentDao->search($request);
     }
+    
     /**
-     * To send student list
-     * @return object
-     */
-    public function lastStudentList()
-    {
-        return $this->studentDao->lastStudentList();
+     *to send student list
+    * @param $
+    */
+    public function mail(Request $request)
+    {  
+        $email = $request->email;
+        $object =  $this->studentDao->lastStudentList();;
+        $lists = $object->toArray();
+
+        Mail::send('Api.emails.sendListMail', compact('lists'), function($message) use ($email) {
+            $message->to($email, 'Student Reocrd')->subject
+               ('Student List');
+            });
+        return 'success';
     }
 
 

@@ -23,7 +23,7 @@ Route::group([],function ()
 {
     Route::get('/studentList',[StudentApiController::class,'index']);
     Route::get('/student/create',[StudentApiController::class,'createForm']);
-    Route::post('/student/save',[StudentApiController::class,'store']);
+    //Route::post('/student/save',[StudentApiController::class,'store']);
     Route::get('/student/edit/{id}',[StudentApiController::class,'editForm']);
     Route::put('/student/update/{id}',[StudentApiController::class,'update']);
     Route::delete('/student/delete/{id}',[StudentApiController::class,'delete']);

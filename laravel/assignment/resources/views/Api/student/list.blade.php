@@ -21,30 +21,6 @@
     <tbody class="list"></tbody>
   </table>
 </div>
-<!--create form-->
-<div class="form-detail create-modal">
-  <div class="list-title">
-    <h2>Add Record</h2>
-  </div>
-  @include('/common.errors')
-  <form method="post" class="create-form">
-    @csrf
-    <div>
-      <label>Name</label>
-      <input type="text" placeholder="Enter Name" name="name" required>
-      <label>Email</label>
-      <input type="email" placeholder="Enter Email" name="email" required>
-      <label>Major</label>
-      <select name="major_id" class="major_id">
-      </select>
-      <label>Date Of Birth</label>
-      <input type="text" placeholder="Enter Date Of Birth(Y/m/d)" name="dob" id="datepicker" required>
-      <label>Address</label>
-      <input type="text" placeholder="Enter Address" name="address" required>
-      <button name="create" class="create-btn">Save</button>
-    </div>
-  </form>
-</div>
 <!--edit form-->
 <div class="form-detail edit-modal">
   <div class="list-title">

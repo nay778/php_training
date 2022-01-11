@@ -1,12 +1,13 @@
 //for list
-$.ajax({
-  dataType: "json",
-  type: 'GET',
-  url: 'http://127.0.0.1:8000/api/studentList',
-  success: function (result) {
-    let sn = 1;
-    result.forEach(data => {
-      $(".list").append(`
+$(document).ready(function () {
+  $.ajax({
+    dataType: "json",
+    type: 'GET',
+    url: 'http://127.0.0.1:8000/api/studentList',
+    success: function (result) {
+      let sn = 1;
+      result.forEach(data => {
+        $(".list").append(`
               <tr>
                 <td>${sn}</td>
                 <td>${data.name}</td>
@@ -18,20 +19,20 @@ $.ajax({
                 <td class="text-center"><button class="delete" onClick="deleteStudentById(${data.id})"><i class="fas fa-trash-alt text-danger"></i></button></td>
               </tr>
             `
-      );
-      sn++;
+        );
+        sn++;
 
-    });
-  }
+      });
+    }
+  });
+  $('.edit-modal').hide();
 });
-$('.create-modal').hide();
-$('.edit-modal').hide();
-$('.search-modal').hide();
 
 /**
  *for create form
  */
-$(".create").click(function () {
+
+$(document).ready(function(){
   $.ajax({
     dataType: "json",
     url: "/api/student/create",
@@ -46,10 +47,6 @@ $(".create").click(function () {
       });
     }
   });
-  $('.list-modal').hide();
-  $('.create-modal').show();
-  $('.edit-modal').hide();
-  $('.search-modal').hide();
 });
 
 /**
@@ -65,17 +62,26 @@ $('.create-btn').click(function (e) {
   });
   $.ajax({
     data: $('.create-form').serialize(),
-    url: "/api/student/save",
+    url: "/student/save",
     type: "POST",
     dataType: 'json',
     success: function (data) {
       console.log(data);
-      $('.list-modal').show();
-      $('.create-modal').hide();
-      location.reload();
+      $.each(data, function (index,value) {
+        $(".create-alert").append(`<div class="alert alert-primary create-alert" role="alert">
+          ${value}
+        </div>`);
+      });
+      $('.create-btn').html('send');
     },
     error: function (data) {
       console.log('Error:', data);
+      $.each(data, function (index,value) {
+        $(".create-alert").append(`<div class="alert alert-danger create-alert" role="alert">
+          ${value}
+        </div>`);
+      });
+      $('.create-btn').html('Try again');
     }
   });
 });
@@ -114,8 +120,6 @@ function editStudentById(id) {
   });
   $('.list-modal').hide();
   $('.edit-modal').show();
-  $('.create-modal').hide();
-  $('.search-modal').hide();
 }
 
 /**
@@ -139,8 +143,6 @@ $('.edit-btn').click(function (e) {
       console.log(data);
       $('.list-modal').show();
       $('.edit-modal').hide();
-      $('.create-modal').hide();
-      $('.search-modal').hide();
       location.reload();
     },
     error: function (data) {

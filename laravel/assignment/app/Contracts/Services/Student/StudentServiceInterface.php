@@ -57,10 +57,10 @@ interface StudentServiceInterface
      */
     public function search($request);
 
+   
     /**
-     * To send student list
-     * @return object
-     */
-    public function lastStudentList();
-    
+     *to send student list
+    * @param $request
+    */
+    public function mail(Request $request);
 }

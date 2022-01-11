@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers\Api\Student;
 
-use App\Mail\StudentMail;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Excel;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use App\Contracts\Services\Major\MajorServiceInterface;
 use App\Contracts\Services\Student\StudentServiceInterface;
@@ -54,14 +51,9 @@ class StudentApiController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('create')
-                ->withInput()
-                ->withErrors($validator);
+            return response(['message' => 'The email has already been taken.']);
         }
         $msg = $this->studentInterface->saveStudent($request);
-        if($msg){
-            Mail::to($request->email)->send(new StudentMail());
-        }
         return response(['message' => $msg]);
     }
 
@@ -161,14 +153,16 @@ class StudentApiController extends Controller
         $data = [];
         return view('Api.student.mail',compact('data'));
     }
+
     /**
      *to send student list
-    * @param $request
+    * @param $
+    *@return View
     */
     public function mail(Request $request)
     {  
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email|unique:students,email',
+            'email' => 'required|email',
         ]);
 
         if ($validator->fails()) {
@@ -176,16 +170,7 @@ class StudentApiController extends Controller
                 ->withInput()
                 ->withErrors($validator);
         }
-
-        $email = $request->email;
-        $object =  $this->studentInterface->lastStudentList();
-        $lists = $object->toArray();
-
-        Mail::send('Api.emails.sendListMail', compact('lists'), function($message) use ($email) {
-            $message->to($email, 'Student Reocrd')->subject
-               ('Student List');
-            });
-        $data = 'success';
+        $data = $this->studentInterface->mail($request);
         return view('Api.student.mail',compact('data'));
     }
 }
