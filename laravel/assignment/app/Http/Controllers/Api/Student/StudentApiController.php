@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Student;
 
 use App\Mail\StudentMail;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -152,15 +153,34 @@ class StudentApiController extends Controller
         return view('Api.student.search', compact('lists'));     
     }
     
+     /**
+     *mail view
+    * @return view
+    */ public function mailView()
+    { 
+        $data = [];
+        return view('Api.student.mail',compact('data'));
+    }
     /**
      *to send student list
     * @param $request
     */
     public function mail(Request $request)
     {  
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:students,email',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('mail-view')
+                ->withInput()
+                ->withErrors($validator);
+        }
+
         $email = $request->email;
         $object =  $this->studentInterface->lastStudentList();
         $lists = $object->toArray();
+
         Mail::send('Api.emails.sendListMail', compact('lists'), function($message) use ($email) {
             $message->to($email, 'Student Reocrd')->subject
                ('Student List');

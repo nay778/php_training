@@ -45,7 +45,5 @@ Route::post('/student/import', [StudentApiController::class, 'import'])->name('i
 Route::get('/student/search-view', [StudentApiController::class, 'searchView'])->name('search-view');
 Route::post('/student/search', [StudentApiController::class, 'search'])->name('search');
 
-Route::get('/student/mail-view',function(){
-  return view('Api.student.mail');
-})->name('mail-view');
+Route::get('/student/mail-view',[StudentApiController::class, 'mailView'])->name('mail-view');
 Route::post('/student/mail', [StudentApiController::class, 'mail'])->name('mail');

@@ -25,8 +25,6 @@
         <th>Major</th>
         <th>DOB</th>
         <th>Address</th>
-        <th>Edit</th>
-        <th>Delete</th>
       </tr>
       @foreach ($lists as $list)
       <tr>
