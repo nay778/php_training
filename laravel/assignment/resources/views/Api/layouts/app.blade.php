@@ -76,6 +76,10 @@
             <i class="fas fa-cloud-download-alt text-info pr-1"></i>
             <span class="d-none d-lg-inline">Download Excel File</span>
           </a>
+          <a href="{{ route('pdf-export') }}" class="list-group-item list-group-item-action">
+            <i class="fas fa-cloud-download-alt text-info pr-1"></i>
+            <span class="d-none d-lg-inline">Download Pdf File</span>
+          </a>
         </div>
       </nav>
       <main class="col-10 alert-info">

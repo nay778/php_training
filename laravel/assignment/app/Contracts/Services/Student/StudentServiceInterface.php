@@ -47,6 +47,11 @@ interface StudentServiceInterface
     public function excelExport();
 
     /**
+     * Pdf file Export
+     */
+    public function pdfExport();
+
+    /**
      *To get student list for excel export
      */
     public function studentListExport();

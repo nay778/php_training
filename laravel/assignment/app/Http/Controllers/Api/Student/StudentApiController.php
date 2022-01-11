@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api\Student;
 
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Contracts\Services\Major\MajorServiceInterface;
 use App\Contracts\Services\Student\StudentServiceInterface;
-
 class StudentApiController extends Controller
 {   
     public $studentInterface, $majorInterface;
@@ -117,6 +117,15 @@ class StudentApiController extends Controller
         return $this->studentInterface->excelExport();
     }
 
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function generatePDF()
+    {
+        return $this->studentInterface->pdfExport();
+    }
 
     /**
      * search

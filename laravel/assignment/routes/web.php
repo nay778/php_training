@@ -25,6 +25,7 @@ use App\Http\Controllers\Api\Student\StudentApiController;
 
 //Route::get('importExportView', [StudentController::class, 'importExportView'])->name('import-view');
 Route::get('export', [StudentController::class, 'export'])->name('export');
+Route::get('generate-pdf', [StudentApiController::class, 'generatePDF'])->name('pdf-export');
 //Route::post('import', [StudentController::class, 'import'])->name('import');
 
 //search

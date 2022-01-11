@@ -96,6 +96,21 @@ class StudentService implements StudentServiceInterface
     }
 
     /**
+     * PDF file Export
+     */
+    public function pdfExport(){
+        $students =  $this->studentDao->studentList();
+        $data = [
+            'lists' => $students,
+            'date' => date('m/d/Y')
+        ];
+        $pdf = app('dompdf.wrapper');
+        $pdf->loadView('Api.student.studentListPDF', $data);
+    
+        return $pdf->download('studentLists.pdf');
+     }
+ 
+    /**
      *to find student list
      * @param $request
      */
